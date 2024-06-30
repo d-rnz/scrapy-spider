@@ -14,7 +14,7 @@ class AsuraSpider(scrapy.Spider):
             manga_item = MangaItem()
             manga_item["cover_art"] = manga.css("img::attr(src)").get()
             manga_item["title"] = manga.css("h4::text").get()
-            manga_item["latest_chapter"] = manga.css("ul.Manhwa li a::text").get()
+            manga_item["latest_chapter"] = manga.css("ul li a::text").get()
             manga_item["url"] = manga.css("a.series::attr(href)").get()
 
             yield manga_item
