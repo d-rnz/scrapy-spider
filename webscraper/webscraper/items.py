@@ -17,4 +17,5 @@ class MangaItem(scrapy.Item):
     title = scrapy.Field()
     latest_chapter = scrapy.Field()
     url = scrapy.Field()
+    source = scrapy.Field()
     pass
