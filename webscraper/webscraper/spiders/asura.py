@@ -1,4 +1,5 @@
 import scrapy
+from webscraper.items import MangaItem
 
 
 class AsuraSpider(scrapy.Spider):
@@ -10,12 +11,13 @@ class AsuraSpider(scrapy.Spider):
         mangas = response.css("div.utao.styletwo")
 
         for manga in mangas:
-            yield {
-                "cover_art": manga.css("img::attr(src)").get(),
-                "title": manga.css("h4::text").get(),
-                "latest_chapter": manga.css("ul.Manhwa li a::text").get(),
-                "url": manga.css("a.series::attr(href)").get(),
-            }
+            manga_item = MangaItem()
+            manga_item["cover_art"] = manga.css("img::attr(src)").get()
+            manga_item["title"] = manga.css("h4::text").get()
+            manga_item["latest_chapter"] = manga.css("ul.Manhwa li a::text").get()
+            manga_item["url"] = manga.css("a.series::attr(href)").get()
+
+            yield manga_item
 
         next_page = response.css("a.r::attr(href)").get()
 
