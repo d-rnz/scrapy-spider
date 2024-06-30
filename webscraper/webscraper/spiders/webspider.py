@@ -11,10 +11,10 @@ class WebspiderSpider(scrapy.Spider):
 
         for manga in mangas:
             yield {
-                "image": manga.css("img::attr(src)").get(),
+                "cover_art": manga.css("img::attr(src)").get(),
                 "title": manga.css("h4::text").get(),
-                "chapter": manga.css("ul.Manhwa li a::text").get(),
-                "link": manga.css("a.series::attr(href)").get(),
+                "latest_chapter": manga.css("ul.Manhwa li a::text").get(),
+                "url": manga.css("a.series::attr(href)").get(),
             }
 
         next_page = response.css("a.r::attr(href)").get()
