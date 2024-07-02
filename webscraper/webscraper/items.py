@@ -15,7 +15,8 @@ class WebscraperItem(scrapy.Item):
 class MangaItem(scrapy.Item):
     cover_art = scrapy.Field()
     title = scrapy.Field()
+    rating = scrapy.Field()
     latest_chapter = scrapy.Field()
+    current_chapter = scrapy.Field()
     url = scrapy.Field()
     source = scrapy.Field()
-    pass
